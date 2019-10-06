@@ -1,0 +1,50 @@
+// Regra de identação, um argumento por linha, identar com dois espaços em branco
+// Se não houver argumento, passar [], ou seja vazio
+// Nomes de funções ou argumentos devem ser escritos com o "-" sem camel case e sem underscore
+
+(defn imprime-mensagem []
+  (println "---------------------")
+  (println "Bem-vindo ao Estoque!"))
+
+(imprime-mensagem)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Nomenclatura usual de uma chamada de função na maioria das linguagens, imperativa
+
+(defn aplica-desconto [valor-bruto]
+  (* valor-bruto 0.9))
+
+(aplica-desconto 100)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Uma boa convenção em Clojure, dessa maneira a imutabilidade da programação funcional fica melhor declarada, como um evento, no passado
+
+(defn valor-descontado [valor-bruto]
+  (* valor-bruto 0.9))
+
+(valor-descontado 100)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Documentação em Clojure, a String não é impressa... é como se fosse um comentário
+
+(defn valor-descontado 
+  "Retorna valor descontado que é 90% do valor bruto"
+  [valor-bruto]
+  (* valor-bruto 0.9))
+
+(valor-descontado 100)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Forma mais elegante de escrever, utilizando a sintaxe LISP
+
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 %"
+  [valor-bruto]
+  (* valor-bruto (- 1 0.10)))
+
+(valor-descontado 100)
