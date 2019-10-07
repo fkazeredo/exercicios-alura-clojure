@@ -1,0 +1,83 @@
+// É uma má pratica definir símbolos/funções globais, como por exemplo (def desconto 0.10)
+
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 %"
+  [valor-bruto]
+  (def desconto 0.10)
+  (* valor-bruto (- 1 desconto)))
+
+(valor-descontado 100)
+
+
+// Tentativa de melhorar o código para não modificar símbolos globais, utilizar o let [] (vetor) escopo local
+// Lembrar sempre da identação do clojure com dois espaços. No final, fecha todos os parênteses juntos
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 %"
+  [valor-bruto]
+  (let [desconto 0.10]
+    (println "Desconto de" desconto)
+    (* valor-bruto (- 1 desconto))))
+
+(valor-descontado 100)
+
+
+// Brincando mais um pouco com a capacidade funcional. Desconto de 10 % (10 / 100)
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 %"
+  [valor-bruto]
+  (let [desconto (/ 10 100)]
+    (println "Desconto de" desconto)
+    (* valor-bruto (- 1 desconto))))
+
+(valor-descontado 100) // Resultado 90N (BigInt) por causa da tipagem dinâmica... 
+
+
+// Aproveitando os símbolos para deixar o código mais legível, let vetores [] podem receber mais argumentos
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 %"
+  [valor-bruto]
+  (let [taxa-de-desconto (/ 10 100)
+        desconto (* valor-bruto taxa-de-desconto)]
+    (println "Desconto de" desconto)
+    (- valor-bruto desconto)))
+
+(valor-descontado 100) 
+
+
+// Condicional em clojure
+(if (> 500 100)
+  (println "Maior")
+  (println "Menor"))
+
+(if (> 50 100)
+  (println "Maior")
+  (println "Menor"))
+
+
+// Refatorando nossa regra de desconto com estrutura de seleção. If que só tem uma condição (Sem o else, responde nill quando false
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 % se o valor bruto for estritamente maior do que 100."
+  [valor-bruto]
+  (if (> valor-bruto 100)  
+    (let [taxa-de-desconto (/ 10 100)
+          desconto (* valor-bruto taxa-de-desconto)]
+      (println "Desconto de" desconto)
+      (- valor-bruto desconto))
+  ))
+
+(valor-descontado 100) 
+
+// Voltando com else
+(defn valor-descontado 
+  "Retorna valor com desconto de 10 % se o valor bruto for estritamente maior do que 100."
+  [valor-bruto]
+  (if (> valor-bruto 100)  
+    (let [taxa-de-desconto (/ 10 100)
+          desconto (* valor-bruto taxa-de-desconto)]
+      (println "Desconto de" desconto)
+      (- valor-bruto desconto))
+      valor-bruto))
+
+(valor-descontado 100) 
+
+
