@@ -10,10 +10,10 @@
           desconto (* valor-bruto taxa-de-desconto)]
       (println "Desconto de" desconto)
       (- valor-bruto desconto))
-    valor-bruto))
+    (println "Sem desconto"
+    valor-bruto)))
 
-(println
-  (valor-descontado 100))
+(valor-descontado 100)
 
 
 ; ALT + Shift + L para rodar no REPL
