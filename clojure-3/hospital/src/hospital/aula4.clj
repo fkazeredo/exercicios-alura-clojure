@@ -38,7 +38,7 @@
   [hospital pessoa]
   (.start (Thread. (fn [] (chega-sem-malvado! hospital pessoa)))))
 
-(defn simula-um-dia-em-paralelo-com-mapv-preparando
+(defn simula-um-dia-em-paralelo-com-mapv-com-partial
   []
   (let [hospital (atom (h.model/novo-hospital))
         pessoas ["111" "222" "333" "444" "555" "666"]
@@ -48,4 +48,4 @@
                        (Thread/sleep 8000)
                        (pprint hospital))))))
 
-(simula-um-dia-em-paralelo-com-mapv-preparando)
+(simula-um-dia-em-paralelo-com-mapv-com-partial)
