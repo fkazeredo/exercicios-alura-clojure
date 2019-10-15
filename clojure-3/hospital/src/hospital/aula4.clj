@@ -48,4 +48,28 @@
                        (Thread/sleep 8000)
                        (pprint hospital))))))
 
-(simula-um-dia-em-paralelo-com-mapv-com-partial)
+;(simula-um-dia-em-paralelo-com-mapv-com-partial)
+
+(defn simula-um-dia-em-paralelo-com-mapv-com-doseq
+  []
+  (let [hospital (atom (h.model/novo-hospital))
+        pessoas ["111" "222" "333" "444" "555" "666"]]
+    (doseq [pessoa pessoas]
+      (starta-thread-de-chegada hospital pessoas))
+    (.start (Thread. (fn []
+                       (Thread/sleep 8000)
+                       (pprint hospital))))))
+
+; (simula-um-dia-em-paralelo-com-mapv-com-doseq)
+
+(defn simula-um-dia-em-paralelo-com-mapv-com-dotimes
+  "Realmente estou preocupado em executar n vezes"
+  []
+  (let [hospital (atom (h.model/novo-hospital))]
+    (dotimes [pessoas 6]
+      (starta-thread-de-chegada hospital pessoas))
+    (.start (Thread. (fn []
+                       (Thread/sleep 8000)
+                       (pprint hospital))))))
+
+(simula-um-dia-em-paralelo-com-mapv-com-dotimes)
